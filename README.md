@@ -11,9 +11,6 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 ## Features
 
 - **Zuiki Mascon Support:** Maps the DirectInput of the Zuiki one-handle mascon (VID 33DD, PID 0001) to expected virtual inputs.
-- **Virtual Controller Translation:** Emulates an Xbox 360 controller using ViGEmBus.
-- **Action Queuing System:** Implements a timed action queue system to prevent Roblox from misinterpreting rapid inputs, transforming continuous mascon movements into discrete controller notch changes.
-- **Brake-to-Power Sequencing:** Ensures that all brake release taps complete before power applications start when performing rapid transitions (e.g., B8 to P5).
 - **Multiple Train Configurations:** Built-in profiles for various British Rail train classes, handling differences in power notches and brake configurations (notched vs. unnotched).
 
 ## Supported Train Classes
@@ -21,7 +18,7 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 - **Class 800-810:** 4 power notches, unnotched brakes
 - **Class 230:** 6 power notches, unnotched brakes
 - **Class 90:** 7 power notches, unnotched brakes
-- **Class 142/153: (Pacer)** 7 power notches, 3 notched brakes
+- **Class 142/153:** 7 power notches, 3 notched brakes
 - **Class 231/745/755/756:** unnotched power, unnotched brakes
 
 ## Requirements
