@@ -50,9 +50,11 @@ enum PowerNotchConfig
     Class90,     // 7 Power Notches
     Class153,    // 7 Power Notches (notched brakes)
     Class231,    // 5 Power Positions (unnotched power/brake)
-    Class745,    // 5 Power Positions (unnotched power/brake)
+    Class350,    // 5 Power Positions (unnotched power/brake)
     Class755,    // 5 Power Positions (unnotched power/brake)
-    Class756     // 5 Power Positions (unnotched power/brake)
+    Class756,     // 5 Power Positions (unnotched power/brake)
+
+
 }
 
 // Handle Position Structure
@@ -251,14 +253,12 @@ class MasconAdapter
             _availableDevices.Add(deviceInfo);
             
             // Check if this is the Zuiki Mascon
-            bool isZuikiMascon = device.ProductName.Contains("33DD") || 
-                                 device.ProductName.Contains("0001") ||
-                                 device.ProductName.ToLower().Contains("mascon");
+            bool isZuikiMascon = device.ProductName.ToLower().Contains("mascon");
             
             if (isZuikiMascon)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"  [{index}] {device.ProductName}");
+                Console.Write($"  [{index}] {device.ProductName} {device.ProductGuid}");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(" ★ (Zuiki Mascon Detected)");
                 Console.ResetColor();
@@ -393,10 +393,11 @@ class MasconAdapter
 
         Console.WriteLine("\nSelect Train Class:");
         Console.WriteLine("  [1] Class 800 (4 power notches)");
-        Console.WriteLine("  [2] Class 230 (6 power notches)");
-        Console.WriteLine("  [3] Class 90  (7 power notches)");
-        Console.WriteLine("  [4] Class 142/153 (P7 / B3 notched)");
-        Console.WriteLine("  [5] Class 231/745/755/756 (unnotched power/brake)");
+        Console.WriteLine("  [2] Class 350 (5 power notches)");
+        Console.WriteLine("  [3] Class 230 (6 power notches)");
+        Console.WriteLine("  [4] Class 90  (7 power notches)");
+        Console.WriteLine("  [5] Class 142/153 (P7 / B3 notched)");
+        Console.WriteLine("  [6] Class 231/745/755/756 (unnotched power/brake)");
         Console.Write("\nEnter choice: ");
 
         string? input = Console.ReadLine();
@@ -442,10 +443,11 @@ class MasconAdapter
         return input switch
         {
             "1" => (PowerNotchConfig.Class800, false, true),
-            "2" => (PowerNotchConfig.Class230, false, true),
-            "3" => (PowerNotchConfig.Class90, false, true),
-            "4" => (PowerNotchConfig.Class153, true, true),
-            "5" => (PowerNotchConfig.Class231, false, false),
+            "2" => (PowerNotchConfig.Class350, false, true),
+            "3" => (PowerNotchConfig.Class230, false, true),
+            "4" => (PowerNotchConfig.Class90, false, true),
+            "5" => (PowerNotchConfig.Class153, true, true),
+            "6" => (PowerNotchConfig.Class231, false, false),
             _ => (_powerNotches, _notchedBrakes, _notchedPower) // keep current
         };
     }
@@ -1133,6 +1135,7 @@ class MasconAdapter
             PowerNotchConfig.Class90 => "Class 90",
             PowerNotchConfig.Class153 => "Class 142/153",
             PowerNotchConfig.Class231 => "Class 231/745/755/756",
+            PowerNotchConfig.Class350 => "Class 350",
 
             _ => "Unknown"
         };
@@ -1147,6 +1150,7 @@ class MasconAdapter
             PowerNotchConfig.Class90 => 7,
             PowerNotchConfig.Class153 => 7,
             PowerNotchConfig.Class231 => 5,
+            PowerNotchConfig.Class350 => 5,
             _ => 5
         };
     }
