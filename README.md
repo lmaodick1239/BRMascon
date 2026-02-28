@@ -7,6 +7,7 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 - **Input Lag:** Due to the action queuing system, there may be a slight delay (up to 100ms) between physical input and in-game response, especially during rapid transitions.
 - **Missmatches Controller position:** In some cases, the virtual controller may not perfectly reflect the physical mascon position, particularly when rapidly changing between power and brake notches. You can reset the controller position by applying full power and back to neutral on notched power trains, or by applying full service brakes on station stop with guard.
 - **Limited Train Profiles:** Currently supports only a few British Rail train classes. Additional profiles may be needed for other classes or custom configurations.
+- **Displaced Text after Configuration:** After changing the train class in the configuration menu, the text may become misaligned.
 
 ## Features
 
