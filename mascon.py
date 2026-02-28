@@ -6,7 +6,7 @@
 
 EB is held by E key. Release EB by holding W for 0.2 seconds.
 
-Mascon is zuiki one handle mascon, aka vendor 3ddd product id 0001. 
+Mascon is zuiki one handle mascon, aka vendor 33dd product id 0001. 
 
 
 below are values of V1 from P5 to EB, where N is 0, P5 is -32768, and EB is 32767. These values are from Mascon.
