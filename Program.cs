@@ -82,6 +82,7 @@ class DeviceInfo
 {
     public Guid InstanceGuid { get; set; }
     public string ProductName { get; set; } = "";
+    public Guid ProductGuid { get; set; }
 }
 
 // Main Adapter Class
@@ -247,18 +248,19 @@ class MasconAdapter
             var deviceInfo = new DeviceInfo
             {
                 InstanceGuid = device.InstanceGuid,
-                ProductName = device.ProductName
+                ProductName = device.ProductName,
+                ProductGuid = device.ProductGuid
             };
             
             _availableDevices.Add(deviceInfo);
             
             // Check if this is the Zuiki Mascon
-            bool isZuikiMascon = device.ProductName.ToLower().Contains("mascon");
+            bool isZuikiMascon = device.ProductName.ToLower().Contains("mascon") || device.ProductGuid.ToString().StartsWith("000133dd", StringComparison.OrdinalIgnoreCase);
             
             if (isZuikiMascon)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"  [{index}] {device.ProductName} {device.ProductGuid}");
+                Console.Write($"  [{index}] {device.ProductName}");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(" ★ (Zuiki Mascon Detected)");
                 Console.ResetColor();
@@ -293,9 +295,7 @@ class MasconAdapter
             input = _availableDevices.Count.ToString();
             foreach (var device in _availableDevices)
             {
-                if (device.ProductName.Contains("33DD") || 
-                    device.ProductName.Contains("0001") ||
-                    device.ProductName.ToLower().Contains("mascon"))
+                if (device.ProductName.ToLower().Contains("mascon") || device.ProductGuid.ToString().StartsWith("000133dd", StringComparison.OrdinalIgnoreCase))
                 {
                     input = (_availableDevices.IndexOf(device) + 1).ToString();
                     break;
@@ -851,7 +851,7 @@ class MasconAdapter
             else
             {
                 var holdMs = (int)((Math.Abs(delta) / 8.0) * UnnotchedBrakeFullRangeMs);
-                EnqueueHold(button, holdMs, 100);
+                EnqueueHold(button, holdMs, 0);
             }
         }
         else if (delta < 0)
