@@ -1,6 +1,6 @@
 # BRMascon
 
-BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals from a **Zuiki one-handle Mascon** into virtual Xbox 360 controller inputs. It is specifically designed to be used with **Roblox British Railway**.
+BRMascon is a C# (.NET 9.0) application that translates the Input signals from a **Zuiki one-handle Mascon** into virtual Xbox 360 controller inputs. It is specifically designed to be used with **Roblox British Railway**.
 
 ## Known Issues
 
