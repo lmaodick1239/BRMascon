@@ -110,7 +110,7 @@ class MasconAdapter
     private readonly object _actionLock = new();
     private DateTime _nextActionTime = DateTime.MinValue;
 
-    private const int UnnotchedPowerFullRangeMs = 950; // it is actually 1200ms from 0 power to full power on 231, but there is delay in the response so 950ms is closer to the feel of the notched configs
+    private const int UnnotchedPowerFullRangeMs = 980; // it is actually 1200ms from 0 power to full power on 231, but there is delay in the response so 950ms is closer to the feel of the notched configs
 
     private const int UnnotchedBrakeFullRangeMs = 755;// it is actually 1000ms from 0 brake to full brake on majority of configs, but again there is delay in the response so 755ms is closer to the feel of the notched configs
     
@@ -1021,7 +1021,7 @@ class MasconAdapter
                 if (_ebActive)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("[EB Engaged] ");
+                    Console.Write("[EB] ");
                 }
                 if (_zrPressed)
                 {

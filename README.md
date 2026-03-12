@@ -9,6 +9,14 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 - **Limited Train Profiles:** Currently supports only a few British Rail train classes. Additional profiles may be needed for other classes or custom configurations.
 - **Displaced Text after Configuration:** After changing the train class in the configuration menu, the text may become misaligned.
 
+## Settings
+
+- **Game Settings:** Follow the screenshots below to configure BR settings for optimal compatibility with BRMascon.
+[!Settings screenshot 1](./screenshots/image.png11.png)
+[!Settings screenshot 2](./screenshots/image.png11.png2.png)
+[!Settings screenshot 3](./screenshots/image.png12.png)
+[!Settings screenshot 4](./screenshots/image.png123.png)
+
 ## Features
 
 - **Zuiki Mascon Support:** Maps the DirectInput of the Zuiki one-handle mascon (VID 33DD, PID 0001) to expected virtual inputs.
@@ -21,6 +29,7 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 - **Class 90:** 7 power notches, unnotched brakes
 - **Class 142/153:** 7 power notches, 3 notched brakes
 - **Class 231/745/755/756:** unnotched power, unnotched brakes
+- **Class 350:** 5 power notches, unnotched brakes
 
 ## Requirements
 
