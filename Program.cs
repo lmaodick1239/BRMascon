@@ -392,7 +392,7 @@ class MasconAdapter
         }
 
         Console.WriteLine("\nSelect Train Class:");
-        Console.WriteLine("  [1] Class 800 (4 power notches)");
+        Console.WriteLine("  [1] Class 180/80X (4 power notches)");
         Console.WriteLine("  [2] Class 350 (5 power notches)");
         Console.WriteLine("  [3] Class 230 (6 power notches)");
         Console.WriteLine("  [4] Class 90  (7 power notches)");
@@ -1158,6 +1158,7 @@ class MasconAdapter
     private void RestoreDashboard()
     {
         Console.Clear();
+        Thread.Sleep(100);
         ShowDashboardHeader();
     }
 

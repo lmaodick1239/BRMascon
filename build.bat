@@ -51,4 +51,4 @@ echo.
 echo The Framework-Dependent version is smaller but requires
 echo .NET 9.0 Runtime to be installed on the target machine.
 echo.
-pause
+@REM pause

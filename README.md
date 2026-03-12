@@ -1,21 +1,25 @@
 # BRMascon
 
-BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals from a **Zuiki one-handle Mascon** into virtual Xbox 360 controller inputs. It is specifically designed to be used with **Roblox British Rail**.
+BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals from a **Zuiki one-handle Mascon** into virtual Xbox 360 controller inputs. It is specifically designed to be used with **Roblox British Railway**.
 
 ## Known Issues
 
+- **Class 86 Support:** Class 86 support will never be implemented due to its unique control scheme that does not align with the Zuiki mascon's capabilities.
 - **Input Lag:** Due to the action queuing system, there may be a slight delay (up to 100ms) between physical input and in-game response, especially during rapid transitions.
 - **Missmatches Controller position:** In some cases, the virtual controller may not perfectly reflect the physical mascon position, particularly when rapidly changing between power and brake notches, especially during lag spikes. You can reset the controller position by applying full power and back to neutral on notched power trains, or by applying full service brakes on station stop with guard.
 - **Limited Train Profiles:** Currently supports only a few British Rail train classes. Additional profiles may be needed for other classes or custom configurations.
 - **Displaced Text after Configuration:** After changing the train class in the configuration menu, the text may become misaligned.
+- **Inconsistent Behavior with Unnotched Brakes:** Unnotched brake configurations may not perfectly emulate the expected behavior in-game.
+- **Mascon PRO Support:** The app is designed for the Zuiki one-handle mascon and may not work correctly with the Mascon PRO or other similar devices without modification.
+
 
 ## Settings
 
 - **Game Settings:** Follow the screenshots below to configure BR settings for optimal compatibility with BRMascon.
-[!Settings screenshot 1](./screenshots/image.png11.png)
-[!Settings screenshot 2](./screenshots/image.png11.png2.png)
-[!Settings screenshot 3](./screenshots/image.png12.png)
-[!Settings screenshot 4](./screenshots/image.png123.png)
+![Settings screenshot 1](./screenshots/image.png11.png)
+![Settings screenshot 2](./screenshots/image.png11.png2.png)
+![Settings screenshot 3](./screenshots/image.png12.png)
+![Settings screenshot 4](./screenshots/image.png123.png)
 
 ## Features
 
@@ -24,7 +28,7 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 
 ## Supported Train Classes
 
-- **Class 800-810:** 4 power notches, unnotched brakes
+- **Class 180/80X:** 4 power notches, unnotched brakes
 - **Class 230:** 6 power notches, unnotched brakes
 - **Class 90:** 7 power notches, unnotched brakes
 - **Class 142/153:** 7 power notches, 3 notched brakes
@@ -35,7 +39,7 @@ BRMascon is a C# (.NET 9.0) application that translates the DirectInput signals 
 
 1. **Physical Zuiki Mascon** connected to your PC.
 2. **ViGEmBus Driver:** Must be installed to emulate the virtual Xbox 360 controller. You can download and install it from the [ViGEmBus Releases page](https://github.com/ViGEm/ViGEmBus/releases). The app will fail immediately without this driver installed.
-3. **.NET 9.0 SDK:** Required to build and run the project.
+3. (Optional if using standalone exe) **.NET 9.0 SDK/Runtime:** Required to build/run the project.
 
 ## Controls Mapping
 
