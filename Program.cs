@@ -404,11 +404,11 @@ class MasconAdapter
 
         if (!isInitialSetup && input == "0")
         {
+            RestoreDashboard();
             lock (_configLock)
             {
                 _showConfigMenu = false;
             }
-            RestoreDashboard();
             return;
         }
 
@@ -423,12 +423,11 @@ class MasconAdapter
             Console.ResetColor();
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
-
+            RestoreDashboard();
             lock (_configLock)
             {
                 _showConfigMenu = false;
             }
-            RestoreDashboard();
         }
         else
         {
@@ -1158,7 +1157,7 @@ class MasconAdapter
     private void RestoreDashboard()
     {
         Console.Clear();
-        Thread.Sleep(100);
+        // Thread.Sleep(100);
         ShowDashboardHeader();
     }
 
