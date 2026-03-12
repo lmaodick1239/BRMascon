@@ -46,13 +46,16 @@ enum HandleState
 enum PowerNotchConfig
 {
     Class800,    // 4 Power Notches
+    Class350,    // 5P
+    Class231,    // 5 Power Positions (unnotched power/brake)
     Class230,    // 6 Power Notches
     Class90,     // 7 Power Notches
-    Class153,    // 7 Power Notches (notched brakes)
-    Class231,    // 5 Power Positions (unnotched power/brake)
-    Class350,    // 5 Power Positions (unnotched power/brake)
-    Class755,    // 5 Power Positions (unnotched power/brake)
-    Class756,     // 5 Power Positions (unnotched power/brake)
+    Class153,    // 7P 3B
+    Class170, // 7P 4B
+
+    Class221, // 4P 6B
+    Class321, // 4P 3B
+
 
 
 }
@@ -392,12 +395,15 @@ class MasconAdapter
         }
 
         Console.WriteLine("\nSelect Train Class:");
-        Console.WriteLine("  [1] Class 180/80X (4 power notches)");
-        Console.WriteLine("  [2] Class 350 (5 power notches)");
-        Console.WriteLine("  [3] Class 230 (6 power notches)");
-        Console.WriteLine("  [4] Class 90  (7 power notches)");
-        Console.WriteLine("  [5] Class 142/153 (P7 / B3 notched)");
-        Console.WriteLine("  [6] Class 231/745/755/756 (unnotched power/brake)");
+        Console.WriteLine("  [1] Class 800 (4 Power Notches)");
+        Console.WriteLine("  [2] Class 350 (5 Power Notches)");
+        Console.WriteLine("  [3] Class 231 (Unnotched power & brake)");
+        Console.WriteLine("  [4] Class 230 (6 Power Notches)");
+        Console.WriteLine("  [5] Class 90 (7 Power Notches)");
+        Console.WriteLine("  [6] Class 153 (7 Power Notches, 3 Brake Notches)");
+        Console.WriteLine("  [7] Class 170 (7 Power Notches, 4 Brake Notches)");
+        Console.WriteLine("  [8] Class 221 (4 Power Notches, 6 Brake Notches)");
+        Console.WriteLine("  [9] Class 321 (4 Power Notches, 3 Brake Notches)");
         Console.Write("\nEnter choice: ");
 
         string? input = Console.ReadLine();
@@ -441,13 +447,29 @@ class MasconAdapter
     {
         return input switch
         {
-            "1" => (PowerNotchConfig.Class800, false, true),
-            "2" => (PowerNotchConfig.Class350, false, true),
-            "3" => (PowerNotchConfig.Class230, false, true),
-            "4" => (PowerNotchConfig.Class90, false, true),
-            "5" => (PowerNotchConfig.Class153, true, true),
-            "6" => (PowerNotchConfig.Class231, false, false),
-            _ => (_powerNotches, _notchedBrakes, _notchedPower) // keep current
+    //             C    Class800,    // 4 Power Notches
+    // Class350,    // 5P
+    // Class231,    // 5 Power Positions (unnotched power/brake)
+    // Class230,    // 6 Power Notches
+    // Class90,     // 7 Power Notches
+    // Class153,    // 7P 3B
+    // Class170, // 7P 4B
+
+    // Class221, // 4P 6B
+    // Class321, // 4P 3B
+        
+        "1" => (PowerNotchConfig.Class800, false, true),
+        "2" => (PowerNotchConfig.Class350, false, true),
+        "3" => (PowerNotchConfig.Class231, false, false),
+        "4" => (PowerNotchConfig.Class230, false, true),
+        "5" => (PowerNotchConfig.Class90, false, true),
+        "6" => (PowerNotchConfig.Class153, true, true),
+        "7" => (PowerNotchConfig.Class170, true, true),
+        "8" => (PowerNotchConfig.Class221, true, false),
+        "9" => (PowerNotchConfig.Class321, true, false),
+        _ => (_powerNotches, _notchedBrakes, _notchedPower)
+
+
         };
     }
     
@@ -1129,12 +1151,14 @@ class MasconAdapter
     {
         return config switch
         {
-            PowerNotchConfig.Class800 => "Class 800",
+            PowerNotchConfig.Class800 => "Class 180/80X",
             PowerNotchConfig.Class230 => "Class 230",
             PowerNotchConfig.Class90 => "Class 90",
-            PowerNotchConfig.Class153 => "Class 142/153",
+            PowerNotchConfig.Class153 => "Class 142/150/153",
             PowerNotchConfig.Class231 => "Class 231/745/755/756",
             PowerNotchConfig.Class350 => "Class 350",
+            PowerNotchConfig.Class170 => "Class 170",
+            PowerNotchConfig.Class221 => "Class 220/221",
 
             _ => "Unknown"
         };
@@ -1142,14 +1166,27 @@ class MasconAdapter
 
     private int GetPowerNotchCount()
     {
+    //         Class800,    // 4 Power Notches
+    // Class350,    // 5P
+    // Class231,    // 5 Power Positions (unnotched power/brake)
+    // Class230,    // 6 Power Notches
+    // Class90,     // 7 Power Notches
+    // Class153,    // 7P 3B
+    // Class170, // 7P 4B
+
+    // Class221, // 4P 6B
+    // Class321, // 4P 3B
         return _powerNotches switch
         {
             PowerNotchConfig.Class800 => 4,
+            PowerNotchConfig.Class350 => 5,
+            PowerNotchConfig.Class231 => 5,
             PowerNotchConfig.Class230 => 6,
             PowerNotchConfig.Class90 => 7,
             PowerNotchConfig.Class153 => 7,
-            PowerNotchConfig.Class231 => 5,
-            PowerNotchConfig.Class350 => 5,
+            PowerNotchConfig.Class170 => 7,
+            PowerNotchConfig.Class221 => 4,
+            PowerNotchConfig.Class321 => 4,
             _ => 5
         };
     }
